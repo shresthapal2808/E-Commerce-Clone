@@ -22,6 +22,10 @@ Check out the live version of our website [here](https://clone-ecom.netlify.app)
    `npm run dev`
 4. Build for production:
    `npm run build`
+# Note
+This project currently uses only the front end. Working on the backend, which might be added soon.
+
+   
 
 
    

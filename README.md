@@ -17,9 +17,9 @@ Check out the live version of our website [here](https://clone-ecom.netlify.app)
 ## How to Run Locally
 1. Clone the repository.
 2. Install dependencies:
-   ## npm install
+   'npm install'
 3. Run the development server:
-   ## npm run dev
+   'npm run dev'
 4. Build for production:
-   ## npm run build
+   'npm run build'
 

@@ -6,8 +6,9 @@ Welcome to our comprehensive e-commerce platform, where users can browse product
 - **Product Browsing:** Explore a wide range of tech gadgets and accessories.
 - **Shopping Cart:** Add items to your cart and manage your selections.
 
-## Live Demo
-Check out the live version of our website [here](e-com-clone.netlify.app).
+## 🚀 Live Demo  
+Check out the live version of our website [here](https://e-com-clone.netlify.app).
+
 
 ## Technologies Used
 - **Frontend:** HTML, CSS, JavaScript, Bootstrap

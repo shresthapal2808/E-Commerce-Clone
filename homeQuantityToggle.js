@@ -28,7 +28,7 @@ export const homeQuantityToggle = (event, id, stock) => {
     productQuantity.innerText = quantity;
     console.log(quantity);
 
-    // updating the hidden quantity so the future clicks know the latest no.
+    // updating the hidden quantity so the future clicks know the latest no. setAttribute(name, value)
     productQuantity.setAttribute("data-quantity", quantity.toString());
     return quantity;
   };

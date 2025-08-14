@@ -1,8 +1,12 @@
+// This script dynamically creates the product cards from a data array, wires up event listeners for quantity control and cart functionality, 
+// and appends everything to the page without manually writing HTML for each product
+
+
 import { addToCart } from "./addToCart";
 import { homeQuantityToggle } from "./homeQuantityToggle";
 
-const productContainer = document.querySelector("#productContainer");
-const productTemplate = document.querySelector("#productTemplate")
+const productContainer = document.querySelector("#productContainer");   // where all the cards go
+const productTemplate = document.querySelector("#productTemplate")   // a frame where the products will be held
 
 export const showProductContainer = (products) => {
     if(! products){
@@ -10,13 +14,18 @@ export const showProductContainer = (products) => {
     }
 
     products.forEach((curProd) => {
-        const { brand, category, description, id, image, name, price, stock } =
-          curProd;
-    
+        // destructuring or unpacking values from data structures 
+        // const colors = ["red", "green", "blue"];
+       // const [firstColor, secondColor, thirdColor] = colors;
+        // console.log(firstColor); // Output: red
+        const { brand, category, description, id, image, name, price, stock } =  curProd;
+
+        // cloning the template
         const productClone = document.importNode(productTemplate.content, true);
     
         productClone.querySelector("#cardValue").setAttribute("id", `card${id}`);
-    
+
+        // updating the values
         productClone.querySelector(".category").textContent = category;
         productClone.querySelector(".productName").textContent = name;
         productClone.querySelector(".productImage").src = image;
@@ -24,19 +33,14 @@ export const showProductContainer = (products) => {
         productClone.querySelector(".productStock").textContent = stock;
         productClone.querySelector(".productDescription").textContent = description;
         productClone.querySelector(".productPrice").textContent = `₹${price}`;
-        productClone.querySelector(".productActualPrice").textContent = `₹${
-          price * 4
-        }`;
+        productClone.querySelector(".productActualPrice").textContent = `₹${price * 4}` ;
     
-        productClone
-          .querySelector(".stockElement")
-          .addEventListener("click", (event) => {
+        // quantity manipulation
+        productClone.querySelector(".stockElement").addEventListener("click", (event) => {
             homeQuantityToggle(event, id, stock);
           });
     
-        productClone
-          .querySelector(".add-to-cart-button")
-          .addEventListener("click", (event) => {
+        productClone.querySelector(".add-to-cart-button").addEventListener("click", (event) => {
             addToCart(event, id, stock);
           });
     

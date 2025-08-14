@@ -1,3 +1,8 @@
+// When a user clicks ‘Add to Cart’, I first check if that product already exists in Local Storage.
+// If it does, I update its quantity and price.
+// If it doesn’t, I push it as a new entry.
+// Then I update the cart count in the UI
+
 import { getCartProductFromLS } from "./getCartProducts";
 import { updateCartValue } from "./updateCartValue";
 

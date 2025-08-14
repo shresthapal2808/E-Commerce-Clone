@@ -24,7 +24,7 @@ export const homeQuantityToggle = (event, id, stock) => {
     }
 
 
-    // updating the visible quantity (innertext)
+    // updating the visible quantity (innertext) to show the change in the DOM
     productQuantity.innerText = quantity;
     console.log(quantity);
 

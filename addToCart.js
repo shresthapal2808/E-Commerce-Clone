@@ -1,5 +1,4 @@
 import { getCartProductFromLS } from "./getCartProducts";
-import { showToast } from "./showToast";
 import { updateCartValue } from "./updateCartValue";
 
 // -----------------------------------------------------
@@ -20,34 +19,32 @@ export const addToCart = (event, id, stock) => {
   //   console.log(quantity, price);
   price = price.replace("₹", "");
 
-  let existingProd = arrLocalStorageProduct.find(
-    (curProd) => curProd.id === id
-  );
+  // Check if product already exists: 
+  let existingProd = arrLocalStorageProduct.find((curProd) => curProd.id === id);
 
   console.log(existingProd);
 
+  // if the quantity is incrementing then do something
   if (existingProd && quantity > 1) {
     quantity = Number(existingProd.quantity) + Number(quantity);
     price = Number(price * quantity);
     let updatedCart = { id, quantity, price };
-
+    
+    // Using .map() creates a new array instead of modifying the old one in place.
     updatedCart = arrLocalStorageProduct.map((curProd) => {
       return curProd.id === id ? updatedCart : curProd;
     });
     console.log(updatedCart);
-
+    
     localStorage.setItem("cartProductLS", JSON.stringify(updatedCart));
-    //show toast when product added to the cart
-    showToast("add", id);
   }
 
+  // If product already exists (duplicate click) → Do nothing:
   if (existingProd) {
-    // alert("bhai duplicate hai");
     return false;
   }
 
-  //todo Don't Forget To LIKE SHARE & SUBSCRIBE TO THAPA TECHNCIAL YOUTUBE CHANNEL 👉 https://www.youtube.com/thapatechnical
-
+  // If product is new → Push to array & save in Local Storage:
   price = Number(price * quantity);
   quantity = Number(quantity);
 
@@ -57,6 +54,4 @@ export const addToCart = (event, id, stock) => {
   //update the cart button value
   updateCartValue(arrLocalStorageProduct);
 
-  //show toast when product added to the cart
-  showToast("add", id);
 };

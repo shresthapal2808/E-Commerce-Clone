@@ -1,14 +1,16 @@
+// 
+
 import { updateCartValue } from "./updateCartValue";
 
 export const getCartProductFromLS = () => {
-  let cartProducts = localStorage.getItem("cartProductLS");
+  let cartProducts = localStorage.getItem("cartProductLS"); // get cart products from the LS
   if (!cartProducts) {
-    return [];
+    return [];            // if empty return empty array
   }
-  cartProducts = JSON.parse(cartProducts);
+  cartProducts = JSON.parse(cartProducts);        // since, Local Storage only stores strings. JSON.parse turns it back into a usable JS array.
 
   //update the cart button value
-  updateCartValue(cartProducts);
+  updateCartValue(cartProducts);  
 
   return cartProducts;
 };

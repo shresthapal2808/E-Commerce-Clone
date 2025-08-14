@@ -1,5 +1,4 @@
-// This script dynamically creates the product cards from a data array, wires up event listeners for quantity control and cart functionality, 
-// and appends everything to the page without manually writing HTML for each product
+// Clones the template for each product and injects real data + event listeners.
 
 
 import { addToCart } from "./addToCart";

@@ -1,5 +1,3 @@
-// 
-
 import { updateCartValue } from "./updateCartValue";
 
 export const getCartProductFromLS = () => {
@@ -10,7 +8,7 @@ export const getCartProductFromLS = () => {
   cartProducts = JSON.parse(cartProducts);        // since, Local Storage only stores strings. JSON.parse turns it back into a usable JS array.
 
   //update the cart button value
-  updateCartValue(cartProducts);  
+  updateCartValue(cartProducts);   // Updates the cart badge using updateCartValue.
 
   return cartProducts;
 };

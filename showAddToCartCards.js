@@ -16,48 +16,53 @@ console.log(filterProducts);
 // -----------------------------------------------------
 // to update the addToCart page
 // --------------------------------------------------------
-const cartElement = document.querySelector("#productCartContainer");
-const templateContainer = document.querySelector("#productCartTemplate");
+const cartElement = document.querySelector("#productCartContainer");  // Container to hold all cart items
+const templateContainer = document.querySelector("#productCartTemplate");  // Template for a single cart item
+
+// -----------------------------------------------------
+// Function to show all products in the cart
+// --------------------------------------------------------
 
 const showCartProduct = () => {
   filterProducts.forEach((curProd) => {
     const { category, id, image, name, stock, price } = curProd;
 
+     // Clone the template for each product
     let productClone = document.importNode(templateContainer.content, true);
-
-    const lSActualData = fetchQuantityFromCartLS(id, price);
-
+    // Fetch the actual quantity and total price for this product from localStorage
+    const lSActualData = fetchQuantityFromCartLS(id, price); 
+     // Update the cloned template with actual product data
     productClone.querySelector("#cardValue").setAttribute("id", `card${id}`);
     productClone.querySelector(".category").textContent = category;
     productClone.querySelector(".productName").textContent = name;
     productClone.querySelector(".productImage").src = image;
 
-    productClone.querySelector(".productQuantity").textContent =
-      lSActualData.quantity;
-    productClone.querySelector(".productPrice").textContent =
-      lSActualData.price;
+    productClone.querySelector(".productQuantity").textContent = lSActualData.quantity; // Set quantity from localStorage
+    productClone.querySelector(".productPrice").textContent = lSActualData.price; // Set price from localStorage
 
-    // handle increment and decrement button
+     // -----------------------------------------------------
+    // Event listeners for increment/decrement buttons
+    // --------------------------------------------------------
     productClone
-      .querySelector(".stockElement")
-      .addEventListener("click", (event) => {
-        incrementDecrement(event, id, stock, price);
+      .querySelector(".stockElement").addEventListener("click", (event) => {
+        incrementDecrement(event, id, stock, price);  // Updates quantity in UI and localStorage when user clicks + or -
       });
 
-    productClone
-      .querySelector(".remove-to-cart-button")
-      .addEventListener("click", () => removeProdFromCart(id));
+   // Removes product from cart and updates UI & localStorage
+    productClone.querySelector(".remove-to-cart-button").addEventListener("click", () => removeProdFromCart(id));
 
+    // Append the fully updated clone to the cart container
     cartElement.appendChild(productClone);
   });
 };
 
 // -----------------------------------------------------
-// Showing the cartProducts
+// Call the function to render cart products on page load
 // --------------------------------------------------------
 showCartProduct();
 
 // -----------------------------------------------------
-// calculating the card total in our cartProducts page
+// Update the total price for all products in cart
+// This function calculates the sum of all product totals
 // --------------------------------------------------------
 updateCartProductTotal();
